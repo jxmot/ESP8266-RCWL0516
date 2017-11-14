@@ -1,6 +1,6 @@
 # ESP8266-RCWL0516
 
-This is an ESP8266 project that uses a RCWL0516 microwave presence sensor. The code is capable of either polling the sensor or by using interrupts.
+This is an ESP8266 project that uses a RCWL0516 microwave presence sensor. The code is capable of either polling the sensor or by using interrupts. The circuit utilizes *opto-coupling* to isolate the sensor from the ESP8266.
 
 # History
 
@@ -16,6 +16,15 @@ The code is not dependent on the type of the sensor. It could be used with any s
 
 * Modifying the input pin, the currently used pin is set with `#define SENSOR_PIN D2` in the sketch file.
 * Modifying the polarity of whether the input is "active" or "idle". The circuit (*as described below*) and code assumes that the sensor is "active" when the input is "low".
+
+Use the Arduino IDE to build and download the sketch to the ESP8266. If the circuit (*described below*) is used the expected output in the console is - 
+
+```
+interr - ACTIVE
+interr - IDLE
+```
+
+When `interr - ACTIVE` is seen the on-board LED will be lit. And when `interr - IDLE` is seen the LED will be off.
 
 ## The Circuit
 
@@ -37,7 +46,7 @@ Miscellaneous/Option Parts :
 * Housing/case for the RCWL0516. I used an old CF memory card case that I modified slightly to contain the board.
 * Mini clamps, used for holding the CF card case and standing it up vertically.
 
-*Component sources will be listed at the end of this document.*
+*Component sources will be listed near the end of this document.*
 
 ### Schematic
 
@@ -49,10 +58,12 @@ Miscellaneous/Option Parts :
 
 ## Download & Run
 
-
+# Code Details
 
 # Component Sources
 
-# Component Data Sheets
+## Component Data Sheets
+
+# Build Details
 
 # Recommended Reading
