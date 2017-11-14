@@ -1,0 +1,21 @@
+# Any file starting with '_' as it indicates a private version of a file
+# that should NOT be committed to the repo. There should be examples of
+# those types of files and they would be named "example_filename.*"
+_*.*
+# And the following folder(s) -
+node_modules
+_*
+/nbproject/private/
+# misc stuff i want to ignore -
+*.log
+*.txt
+*.bat
+error_log
+# php.ini
+*.ini
+# Files created by winmerge - 
+*.*.bak
+# Notepad++ session files.
+*.session
+# Links (FF)
+*.url
