@@ -1,5 +1,23 @@
 /* ************************************************************************ */
 /*
+    Detects the state of an input and announces new states in the console
+    window.
+
+    This code could be used with any of the GPIO pins as long as their 
+    configured as inputs.
+
+    There are two methods of state-change detection in this sketch :
+
+        * Polled - The input pin is read in the loop() function and if the
+          current input state doesn't match the last changed state then 
+          announce the change and save the state.
+
+        * Interrupt - There are two methods used here for invoking an
+          input interrupt when the input state changes :
+
+            * Interrupt on Change
+            * Interrupt on a Level, toggle between levels on subsequent
+              level changes.
 */
 // change as necessary
 #define SERIAL_BAUD 115200
@@ -120,7 +138,8 @@ void sensorHandlerIdle()
     attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensorHandlerActive, FALLING);
 }
 #endif // INTERR_CHG
-
+/*
+*/
 void setLED(bool state)
 {
     digitalWrite(LED_BUILTIN, state);
