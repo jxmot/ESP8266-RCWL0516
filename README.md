@@ -70,6 +70,10 @@ Miscellaneous/Option Parts :
 
 # Code Details
 
+## Polling for State Change
+
+## Interrupt on State Change
+
 # Component Sources
 
 ## Component Data Sheets
