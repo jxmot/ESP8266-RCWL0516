@@ -52,6 +52,16 @@ Miscellaneous/Option Parts :
 
 ### Finished Breadboard
 
+<p align="center">
+  <img src="./mdimg/bb-01.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black;width:400px"/>
+</p>
+
+**NOTES :** The NTE3042 chips I used didn't have the typical pin 1 markings. Most IC's will have a small dimple on the top that marks pin 1. However the NTE3042 chips have the left edge (*looking down*) corner removed. And unfortunately the resulting notch is very small and difficult to see without magnification. Here's a diagram that might provide a better description :
+
+<p align="center">
+  <img src="./mdimg/ic-6-pin-all-nte.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black"/>
+</p>
+
 ### RCWL0516 Details
 
 ### Testing the Circuit
