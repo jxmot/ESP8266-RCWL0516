@@ -50,6 +50,10 @@ Miscellaneous/Option Parts :
 
 ### Schematic
 
+<p align="center">
+  <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+</p>
+
 ### Finished Breadboard
 
 <p align="center">
