@@ -1,6 +1,6 @@
 # ESP8266-RCWL0516
 
-This is an ESP8266 project that uses a RCWL0516 microwave presence sensor. The code is capable of detecting the state of the sensor by utilizing either polling or interrupts. The circuit utilizes *opto-coupling* to isolate the sensor from the ESP8266.
+This is an ESP8266 project that uses a RCWL0516 microwave presence sensor. The code is capable of detecting the state of the sensor by utilizing either polling or interrupts. The circuit also utilizes *opto-coupling* to isolate the sensor from the ESP8266.
 
 # History
 
@@ -24,11 +24,11 @@ interr - ACTIVE
 interr - IDLE
 ```
 
-When `interr - ACTIVE` is seen the on-board LED will be lit. And when `interr - IDLE` is seen the LED will be off.
+When `interr - ACTIVE` is seen the on-board LED will be lit. And when `interr - IDLE` is seen the LED will be off. And `ACTIVE` will indicate that something has triggered the sensor.
 
 ## The Circuit
 
-Parts Needed :
+Parts Used :
 
 * RCWL-0516 microwave presence sensor
 * ESP8266 NodeMCU v1.0
@@ -60,7 +60,7 @@ Miscellaneous/Option Parts :
   <img src="./mdimg/bb-01.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black;width:400px"/>
 </p>
 
-**NOTES :** The NTE3042 chips I used didn't have the typical pin 1 markings. Most IC's will have a small dimple on the top that marks pin 1. However the NTE3042 chips have the left edge (*looking down*) corner removed. And unfortunately the resulting notch is very small and difficult to see without magnification. Here's a diagram that might provide a better description :
+**NOTES :** The NTE3042 chips I used didn't have the typical pin 1 markings. Most IC's will have a small dimple or a printed dot on the top corner that marks pin 1. However the NTE3042 chips have the left edge (*looking down*) corner removed. And unfortunately the resulting notch is very small and difficult to see without magnification. Here's a diagram that might provide a better description :
 
 <p align="center">
   <img src="./mdimg/ic-6-pin-all-nte.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black"/>
@@ -68,9 +68,25 @@ Miscellaneous/Option Parts :
 
 ### RCWL0516 Details
 
+The RCWL-0516 sensors are relatively inexpensive. I found them at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble.
+
+**IMAGE OF BOARDS TOGETHER**
+
+So you may have to separate them. It's not difficult but I recommend being careful. It's easiest if you have a sturdy hold on two adjacent boards and then gently bend at the edge where they're attached to each other.
+
+For my purposes I decided that I wanted a 5 pin *right angle* pin header on the board. In my opinion it's a better option compared to soldering wires directly to the board.
+
+**IMAGE OF BOARD WITH AND WITHOUT HEADER**
+
+My next step was to find a way where I could either mount the board onto something or enclose it in some type of container. So after rummaging through my bits and pieces I found an old CF memory card case. And as it turns out it needed only minor modifications and the board with the connector fit it perfectly.
+
+**IMAGE OF CASE, DETAILS OF MOD, AND WITH BOARD INSIDE**
+
 ### Testing the Circuit
 
 ## Download & Run
+
+
 
 # Code Details
 
@@ -78,10 +94,16 @@ Miscellaneous/Option Parts :
 
 ## Interrupt on State Change
 
+
+
 # Component Sources
 
 ## Component Data Sheets
 
+
+
 # Build Details
+
+
 
 # Recommended Reading
