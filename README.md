@@ -84,6 +84,13 @@ My next step was to find a way where I could either mount the board onto somethi
 
 ### Testing the Circuit
 
+Although I've had luck with the 5 sensors I bought I've read reviews where other have had problems. For example, I read a few reviews stated that the board output would be at 5v when the sensor was activated. However it's supposed to be 3.3v. And that was enough reason for me to use the opto-coupler and test the circuit before connecting it to my NodeMCU.
+
+Testing was simple and only required the use of a voltmeter. First I tested the RCWL-0516 independantly and verified that it's output pin produced either 3.3v (*approximately*) or it would be a `gnd`. Then I assembled the opto-couple portion of the circuit with the sensor attached. Trial and error and some guessing helped me determine that I needed a 100k pull-up resistor on the connection between the NTE3042 (*opto-coupler*) and the NodeMCU.
+
+**INSERT TRUTH TABLE, SENSOR->OPTO**
+
+
 ## Download & Run
 
 
