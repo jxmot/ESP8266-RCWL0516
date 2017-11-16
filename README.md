@@ -68,7 +68,7 @@ Miscellaneous/Option Parts :
 
 ### RCWL0516 Details
 
-The RCWL-0516 sensors are relatively inexpensive. I found them at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble.
+The RCWL-0516 sensors are relatively inexpensive. I found them at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble. There may also be a small piece to snap off where the connection holes are.
 
 **IMAGE OF BOARDS TOGETHER**
 
@@ -93,11 +93,12 @@ Testing was simple and only required the use of a voltmeter. First I tested the 
 
 ## Download & Run
 
-Assuming that you've assembled and tested the circuit it's time to try out the code! After the sketch has been compiled and downloaded the on-board LED of the NodeMCU *might* be lit. If so just wait about 5 to 10 seconds and it should turn off. When it does the sensor has not detected any presence.
+Assuming that you've assembled and tested the circuit it's time to try out the code! After the sketch has been compiled and downloaded the on-board LED of the NodeMCU *might* be lit when the program starts. If so just wait about 5 to 10 seconds and it should turn off. When it turns off the sensor has not detected any presence.
 
 Please keep in mind that the sensor is quite sensitive. And a minor amount of movement within its range will activate it. 
 
-When the LED is off try waving your hand in front of the sensor (*the side with the components*) and the LED should light up and you should see `interr - ACTIVE` on the IDE console. Wait about 5 to 10 seconds and the LED should turn off.
+When the LED is off try waving your hand in front of the sensor (*the side with the components*) and the LED should light up and you should see `interr - ACTIVE` on the IDE console. Wait about 5 to 10 seconds and the LED should turn off and `interr - IDLE` will be seen on the console.
+
 
 # Code Details
 
