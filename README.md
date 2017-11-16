@@ -93,13 +93,19 @@ Testing was simple and only required the use of a voltmeter. First I tested the 
 
 ## Download & Run
 
+Assuming that you've assembled and tested the circuit it's time to try out the code! After the sketch has been compiled and downloaded the on-board LED of the NodeMCU *might* be lit. If so just wait about 5 to 10 seconds and it should turn off. When it does the sensor has not detected any presence.
 
+Please keep in mind that the sensor is quite sensitive. And a minor amount of movement within its range will activate it. 
+
+When the LED is off try waving your hand in front of the sensor (*the side with the components*) and the LED should light up and you should see `interr - ACTIVE` on the IDE console. Wait about 5 to 10 seconds and the LED should turn off.
 
 # Code Details
 
 ## Polling for State Change
 
 ## Interrupt on State Change
+
+### The Need for Debouncing
 
 
 
