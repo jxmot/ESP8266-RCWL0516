@@ -36,7 +36,7 @@ Parts Used :
 * 100k resistor
 * 4.7k resistor
 * 5v power supply to power the sensor and input of the opto-coupler
-* 5v supply to power the ESP8266 and the output of the opto-coupler
+* 5v supply to power the ESP8266, I used the board's USB connection.
 * Solderless bread board
 
 Miscellaneous/Option Parts :
@@ -66,9 +66,11 @@ Miscellaneous/Option Parts :
   <img src="./mdimg/ic-6-pin-all-nte.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black"/>
 </p>
 
+So you might be wondering "*why the NTE3042?*". Well I happened to be in a local electronics store and it was the *only* opto-coupler they had in stock. And I didn't want to wait for an online order to be delivered, and at about $2 each I figured "why not?". And I was lucky that day, the part worked perfectly for this project.
+
 ### RCWL0516 Details
 
-The RCWL-0516 sensors are relatively inexpensive. I found them at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble. There may also be a small piece to snap off where the connection holes are.
+The RCWL-0516 sensors are relatively inexpensive. I found them online at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble. There may also be a small piece to snap off where the connection holes are.
 
 **IMAGE OF BOARDS TOGETHER**
 
