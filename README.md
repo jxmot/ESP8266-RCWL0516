@@ -96,11 +96,11 @@ Testing was simple and only required the use of a voltmeter. First I tested the 
 
 **INSERT TRUTH TABLE, SENSOR->OPTO**
 
-| Sensor Output | Opto Output | LED |
-|:-------------:|:-----------:|:---:|
-|      3.3v     |     GND     |  ON |
-|      GND      |     OPEN    | OFF |
-|               |             |     |
+| Sensor Output | Opto Output | Active State | LED |
+|:-------------:|:-----------:|:------------:|:---:|
+|      3.3v     |     GND     |      0       |  ON |
+|      GND      |     OPEN    |      1       | OFF |
+|               |             |              |     |
 
 
 ## Download & Run
