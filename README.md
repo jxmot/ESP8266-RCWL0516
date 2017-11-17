@@ -105,13 +105,17 @@ I recommend that you use at least 12 to 18 inches of wire to connect the sensor 
 
 The RCWL-0516 sensors are relatively inexpensive. I found them online at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble. There may also be a small piece to snap off where the connection holes are.
 
-**IMAGE OF BOARDS TOGETHER**
+<p align="center">
+  <img src="./mdimg/rcwl0516-1-644x478.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+</p>
 
 So you may have to separate them. It's not difficult but I recommend being careful. It's easiest if you have a sturdy hold on two adjacent boards and then gently bend at the edge where they're attached to each other.
 
 For my purposes I decided that I wanted a 5 pin *right angle* pin header on the board. In my opinion it's a better option compared to soldering wires directly to the board.
 
-**IMAGE OF BOARD WITH AND WITHOUT HEADER**
+<p align="center">
+  <img src="./mdimg/rcwl0516-2-607x428.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+</p>
 
 My next step was to find a way where I could either mount the board onto something or enclose it in some type of container. So after rummaging through my bits and pieces I found an old CF memory card case. And as it turns out it needed only minor modifications and the board with the connector fit it perfectly.
 
@@ -144,7 +148,68 @@ There are two methods of state-change detection in this sketch :
     * Interrupt on a Level, toggle between levels on subsequent level changes.
     * Interrupt on Change
 
+It possible to choose the method for state detection. This is done using `#define` and `#ifdef`. For example, the sketch as found in the repository will use interrupts - 
+
+```
+//#define POLLED
+//  - OR -
+#define INTERR
+// this will enable interrupt on change instead of 
+// interrupt on level (low vs high)
+//#define INTERR_CHG
+```
+
+If polling is desired then uncomment the `#define POLLED` and comment out the `#define INTERR`. For example - 
+
+**`#define POLLED`**
+`//  - OR -`
+**`//#define INTERR`**
+`// this will enable interrupt on change instead of `
+`// interrupt on level (low vs high)`
+`//#define INTERR_CHG`
+
 ## Polling for State Change
+
+Polling is the simplest approach to reading the sensor. However extra consideration should be taken because the polling becomes part of the main execution loop. And it might impact other tasks occurring within the main execution loop.
+
+```C++
+bool state;
+bool lastState;
+
+void setup()
+{
+    // initialize the states...
+    state = false;
+    lastState = false;
+}
+
+void loop()
+{
+    // read the state of the sensor and see if it 
+    // matches the last known state
+    if((state = digitalRead(SENSOR_PIN)) != lastState)
+    {
+        // no match, change the state of the LED
+        digitalWrite(LED_BUILTIN, state);
+
+        // remember this state as the last
+        lastState = state;
+
+        // sensor indicates active when it pulls
+        // the input to 0.
+        Serial.println("polled - " + String(state ? "IDLE" : "ACTIVE"));
+    }
+    yield();
+    delay(500);
+}
+```
+
+In the example above the sensor input is read (*polled*) every 500ms. When the current state doesn't match the the last transitioned state then the sensor has changed its output.
+
+Some disadvantages to polling are - 
+
+* The *delay* between `loop()` calls must be short enough to insure that changes won't be missed.
+* Code complexity will increase as functionality is added.
 
 ## Interrupt on State Change
 
