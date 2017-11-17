@@ -161,27 +161,27 @@ There are two methods of state-change detection in this sketch :
 
 # Future Modifications
 
-* [DCH010505S Miniature, 1W, 3kVDC Isolated DCDC Converters](#http://www.ti.com/product/dch010505s?qgpn=dch010505s)
-* [DCH010505SN7 Texas Instruments Power Supplies - Board Mount DigiKey](#https://www.digikey.com/products/en?keywords=DCH010505S)
+* [DCH010505S Miniature, 1W, 3kVDC Isolated DCDC Converters](http://www.ti.com/product/dch010505s?qgpn=dch010505s)
+* [DCH010505SN7 Texas Instruments Power Supplies - Board Mount DigiKey](https://www.digikey.com/products/en?keywords=DCH010505S)
 
 
 # Links and References
 
 ## NodeMCU
 
-* [NodeMCU Dev Kit](#https://github.com/nodemcu/nodemcu-devkit-v1.0)
-* [NodeMCU Documentation](#https://nodemcu.readthedocs.io/en/master/)
+* [NodeMCU Dev Kit](https://github.com/nodemcu/nodemcu-devkit-v1.0)
+* [NodeMCU Documentation](https://nodemcu.readthedocs.io/en/master/)
 
 ## Interrupts
 
-* [Arduino - AttachInterrupt](#https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/)
-* [Gammon Forum Electronics Microprocessors Interrupts](#http://gammon.com.au/interrupts)
-* [ESP8266 External interrupts techtutorialsx](#https://techtutorialsx.com/2016/12/11/esp8266-external-interrupts/)
+* [Arduino - AttachInterrupt](https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/)
+* [Gammon Forum Electronics Microprocessors Interrupts](http://gammon.com.au/interrupts)
+* [ESP8266 External interrupts techtutorialsx](https://techtutorialsx.com/2016/12/11/esp8266-external-interrupts/)
 
 ## RCWL-0516
 
-* [Wiring the RCWL0516 Auto Induction Doppler Microwave Radar with ESP826632Arduino](#http://www.14core.com/wiring-the-rcwl0516-auto-induction-doppler-microwave-radar-with-esp826632arduino/)
-* [RCWL-0516 information](#https://github.com/jdesbonnet/RCWL-0516)
+* [Wiring the RCWL0516 Auto Induction Doppler Microwave Radar with ESP826632Arduino](http://www.14core.com/wiring-the-rcwl0516-auto-induction-doppler-microwave-radar-with-esp826632arduino/)
+* [RCWL-0516 information](https://github.com/jdesbonnet/RCWL-0516)
 
 
 
