@@ -35,24 +35,55 @@ Parts Used :
 * NTE3042 Opto-coupler (*or equivalent*)
 * 100k resistor
 * 4.7k resistor
-* 5v power supply to power the sensor and input of the opto-coupler
-* 5v supply to power the ESP8266, I used the board's USB connection.
-* Solderless bread board
+* Two individual power sources - 
+    * 5v power supply to power the sensor
+    * 5v supply to power the ESP8266, I used the board's USB connection.
+* A solderless bread board
+* Bread board jumper wires
+* Lead-free solder
 
-Miscellaneous/Option Parts :
+Miscellaneous/Optional Parts :
 
 * 5 pin solder-in header, I used a right-angle 5 pin header.
-* Male/Female jumper wires
+* Male/Female jumper wires, for connecting the sensor to the rest of the circuit.
 * Housing/case for the RCWL-0516. I used an old CF memory card case that I modified slightly to contain the board.
 * Mini clamps, used for holding the CF card case and standing it up vertically.
+
+Tools Used :
+
+* Small needle-nose pliers
+* Small wire cutter
+* Voltmeter
+* Soldering iron
 
 *Component sources will be listed near the end of this document.*
 
 ### Schematic
 
+Here's a basic schematic of the circuit - 
+
 <p align="center">
   <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
 </p>
+
+The output of the opto-coupler is wired as *open collector*, which explains the need for a pull-up resistor to bring the voltage up when the sensor is inactive (*idle*). The use of the inverted logic has an advantage, the input value on `D2` can be used directly to turn the LED on or off. 
+
+| Sensor Output | Opto Output | Active State Value | LED |
+|:-------------:|:-----------:|:------------------:|:---:|
+|      3.3v     |     GND     |          0         |  ON |
+|      GND      |     OPEN    |          1         | OFF |
+
+### Assembling the Parts
+
+**IMAGE OF PARTS LAID OUT**
+
+* RCWL-0516
+* 5 pin header
+
+If you are using a *male* header on the sensor it's likely you'll have to cut the length you need from a larger header. Use the small wire cutter and place the cutting edge in the small groove between the pins.
+
+**IMAGE OF CUTTING PIN HEADER**
+
 
 ### Finished Breadboard
 
@@ -67,6 +98,8 @@ Miscellaneous/Option Parts :
 </p>
 
 So you might be wondering "*why the NTE3042?*". Well I happened to be in a local electronics store and it was the *only* opto-coupler they had in stock. And I didn't want to wait for an online order to be delivered, and at about $2 each I figured "why not?". And I was lucky that day, the part worked perfectly for this project.
+
+I recommend that you use at least 12 to 18 inches of wire to connect the sensor to the bread board. And keep it separated from the NodeMCU. I've read that the radio frequency used by the sensor (*in the gigahertz range*) conflicts with the 2.4Ghz signal used by the WiFi on the NodeMCU board.
 
 ### RCWL0516 Details
 
@@ -94,15 +127,6 @@ Although I've had luck with the 5 sensors I bought I've read reviews where other
 
 Testing was simple and only required the use of a voltmeter. First I tested the RCWL-0516 independantly and verified that it's output pin produced either 3.3v (*approximately*) or it would be at `gnd`. Then I assembled the opto-couple portion of the circuit with the sensor attached. Trial and error and some guessing helped me determine that I needed a 100k pull-up resistor to 3.3v on the connection between the NTE3042 (*opto-coupler*) and the NodeMCU.
 
-**INSERT TRUTH TABLE, SENSOR->OPTO**
-
-| Sensor Output | Opto Output | Active State | LED |
-|:-------------:|:-----------:|:------------:|:---:|
-|      3.3v     |     GND     |      0       |  ON |
-|      GND      |     OPEN    |      1       | OFF |
-|               |             |              |     |
-
-
 ## Download & Run
 
 Assuming that you've assembled and tested the circuit it's time to try out the code! After the sketch has been compiled and downloaded the on-board LED of the NodeMCU *might* be lit when the program starts. If so just wait about 5 to 10 seconds and it should turn off. When it turns off the sensor has not detected any presence.
@@ -111,8 +135,14 @@ Please keep in mind that the sensor is quite sensitive. And a minor amount of mo
 
 When the LED is off try waving your hand in front of the sensor (*the side with the components*) and the LED should light up and you should see `interr - ACTIVE` on the IDE console. Wait about 5 to 10 seconds and the LED should turn off and `interr - IDLE` will be seen on the console.
 
-
 # Code Details
+
+There are two methods of state-change detection in this sketch :
+
+* Polled - The input pin is read in the loop() function and if the current input state doesn't match the last changed state then announce the change and save the state.
+* Interrupt - There are two methods used here for invoking an input interrupt when the input state changes :
+    * Interrupt on a Level, toggle between levels on subsequent level changes.
+    * Interrupt on Change
 
 ## Polling for State Change
 
@@ -124,12 +154,29 @@ When the LED is off try waving your hand in front of the sensor (*the side with 
 
 # Component Sources
 
-## Component Data Sheets
-
 
 
 # Build Details
 
 
 
-# Recommended Reading
+# Links and References
+
+## NodeMCU
+
+* [NodeMCU Dev Kit](#<https://github.com/nodemcu/nodemcu-devkit-v1.0>)
+* [NodeMCU Documentation](#<https://nodemcu.readthedocs.io/en/master/>)
+
+## Interrupts
+
+* [Arduino - AttachInterrupt](#<https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/>)
+* [Gammon Forum Electronics Microprocessors Interrupts](#<http://gammon.com.au/interrupts>)
+* [ESP8266 External interrupts techtutorialsx](#<https://techtutorialsx.com/2016/12/11/esp8266-external-interrupts/>)
+
+## RCWL-0516
+
+* [Wiring the RCWL0516 Auto Induction Doppler Microwave Radar with ESP826632Arduino](#<http://www.14core.com/wiring-the-rcwl0516-auto-induction-doppler-microwave-radar-with-esp826632arduino/>)
+* [RCWL-0516 information](#<https://github.com/jdesbonnet/RCWL-0516>)
+
+
+
