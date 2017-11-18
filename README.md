@@ -120,7 +120,9 @@ For my purposes I decided that I wanted a 5 pin *right angle* pin header on the 
 
 My next step was to find a way where I could either mount the board onto something or enclose it in some type of container. So after rummaging through my bits and pieces I found an old CF memory card case. And as it turns out it needed only minor modifications and the board with the connector fit it perfectly.
 
-**IMAGE OF CASE, DETAILS OF MOD, AND WITH BOARD INSIDE**
+<p align="center">
+  <img src="./mdimg/cf-case-02-03-04.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+</p>
 
 Now that I had the sensor in a case I needed a way to stand it up or attach it to something. For attaching it to a window or a door *painter's tape* works very well. For standing it upright on a table I used some platic mini-clamps that I found a local tool supply store.
 
