@@ -126,7 +126,9 @@ My next step was to find a way where I could either mount the board onto somethi
 
 Now that I had the sensor in a case I needed a way to stand it up or attach it to something. For attaching it to a window or a door *painter's tape* works very well. For standing it upright on a table I used some platic mini-clamps that I found a local tool supply store.
 
-**IMAGE OF SENSOR WITH CLAMPS & ATTACHED WIRES**
+<p align="center">
+  <img src="./mdimg/cf-case-05-06.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+</p>
 
 ### Testing the Circuit
 
