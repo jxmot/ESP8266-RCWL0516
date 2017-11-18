@@ -1,6 +1,8 @@
 # ESP8266-RCWL0516
 
-This is an ESP8266 project that uses a RCWL0516 microwave presence sensor. The code is capable of detecting the state of the sensor by utilizing either polling or interrupts. The circuit also utilizes *opto-coupling* to isolate the sensor from the ESP8266.
+This is an ESP8266 project that uses a RCWL-0516 microwave presence sensor. The code is capable of detecting the state of the sensor by utilizing either polling or interrupts. The circuit also utilizes *opto-coupling* to isolate the sensor from the ESP8266.
+
+If you need to know more about the RCWL-0516 before proceeding there are some helpful links at the end of this file.
 
 # History
 
@@ -156,16 +158,9 @@ The output of the opto-coupler is wired as *open collector*, which explains the 
 |      3.3v     |     GND     |          0         |  ON |
 |      GND      |     OPEN    |          1         | OFF |
 
-### Assembling the Parts
+## Assembling the Parts
 
-**IMAGE OF PARTS LAID OUT**
-
-* RCWL-0516
-* 5 pin header
-
-If you are using a *male* header on the sensor it's likely you'll have to cut the length you need from a larger header. Use the small wire cutter and place the cutting edge in the small groove between the pins. Be careful when cutting the header! The smaller piece has a tendency to fly off somewhere!
-
-**IMAGE OF CUTTING PIN HEADER**
+It's assumed that you (*the reader*) most likely are already familiar with *bread boarding* stuff. But it's possible you've not used something like the RCWL-0516 or other small circuit boards. So I'll skip the "*how to bread board*" stuff and go directly to the RCWL-0516. 
 
 ### RCWL0516 Details
 
@@ -179,6 +174,12 @@ So you may have to separate them. It's not difficult but I recommend being caref
 
 For my purposes I decided that I wanted a 5 pin *right angle* pin header on the board. In my opinion it's a better option compared to soldering wires directly to the board.
 
+If you are using a *male* header on the sensor it's likely you'll have to cut the length you need from a larger header. Use the small wire cutter and place the cutting edge in the small groove between the pins. Be careful when cutting the header! The smaller piece has a tendency to fly off somewhere!
+
+<p align="center">
+  <img src="./mdimg/rcwl0516-header-cutting.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+</p>
+
 <p align="center">
   <img src="./mdimg/rcwl0516-2-607x428.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
 </p>
@@ -189,7 +190,7 @@ My next step was to find a way where I could either mount the board onto somethi
   <img src="./mdimg/cf-case-02-03-04.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
 </p>
 
-Now that I had the sensor in a case I needed a way to stand it up or attach it to something. For attaching it to a window or a door *painter's tape* works very well. For standing it upright on a table I used some platic mini-clamps that I found a local tool supply store.
+Now that I had the sensor in a case I needed a way to stand it up or attach it to something. For attaching it to a window or a door *painter's tape* works very well. For standing it upright on a table I used some plastic mini-clamps that I found a local tool supply store.
 
 <p align="center">
   <img src="./mdimg/cf-case-05-06.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
@@ -199,7 +200,7 @@ Now that I had the sensor in a case I needed a way to stand it up or attach it t
 
 Although I've had luck with the 5 sensors I bought I've read reviews where other have had problems. For example, I read a few reviews stated that the board output would be at 5v when the sensor was activated. However it's supposed to be 3.3v! And that was enough reason for me to use the opto-coupler and test the circuit before connecting it to my NodeMCU.
 
-Testing was simple and only required the use of a voltmeter. First I tested the RCWL-0516 independantly and verified that it's output pin produced either 3.3v (*approximately*) or it would be at `gnd`. Then I assembled the opto-couple portion of the circuit with the sensor attached. Trial and error and some guessing helped me determine that I needed a 100k pull-up resistor to 3.3v on the connection between the NTE3042 (*opto-coupler*) and the NodeMCU.
+Testing was simple and only required the use of a voltmeter and a 5 volt DC power supply. First I tested the RCWL-0516 independantly and verified that it's output pin produced either 3.3v (*approximately*) or it would be at `gnd`. Then I assembled the opto-couple portion of the circuit with the sensor attached. Trial and error and some guessing helped me determine that I needed a 100k pull-up resistor to 3.3v on the connection between the NTE3042 (*opto-coupler*) and the NodeMCU.
 
 ### Finished Breadboard
 
