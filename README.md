@@ -53,6 +53,7 @@ Tools Used :
 
 * Small needle-nose pliers
 * Small wire cutter
+* Razor knife
 * Voltmeter
 * Soldering iron
 
@@ -106,7 +107,7 @@ I recommend that you use at least 12 to 18 inches of wire to connect the sensor 
 The RCWL-0516 sensors are relatively inexpensive. I found them online at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble. There may also be a small piece to snap off where the connection holes are.
 
 <p align="center">
-  <img src="./mdimg/rcwl0516-1-644x478.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+  <img src="./mdimg/rcwl0516-1-644x478-caption.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
 </p>
 
 So you may have to separate them. It's not difficult but I recommend being careful. It's easiest if you have a sturdy hold on two adjacent boards and then gently bend at the edge where they're attached to each other.
@@ -170,9 +171,11 @@ If polling is desired then uncomment the `#define POLLED` and comment out the `#
 
 ## Polling for State Change
 
-Polling is the simplest approach to reading the sensor. However extra consideration should be taken because the polling becomes part of the main execution loop. And it might impact other tasks occurring within the main execution loop.
+Polling is the simplest approach to reading the sensor. However extra consideration should be taken because the polling becomes part of the main execution loop. And it might impact other tasks occurring within the main execution loop. Here is a simple example - 
 
 ```C++
+#define SENSOR_PIN D2
+
 bool state;
 bool lastState;
 
