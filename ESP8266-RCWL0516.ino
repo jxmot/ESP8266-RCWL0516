@@ -127,6 +127,7 @@ void sensorHandlerActive()
     // indicate the new sensor state - active
     setLED(LED_BUILTIN_ON);
     // attach an interrupt handler to run when the input is going high
+    detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
     attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensorHandlerIdle, RISING);
 }
 
@@ -135,6 +136,7 @@ void sensorHandlerIdle()
     // indicate the new sensor state - idle
     setLED(LED_BUILTIN_OFF);
     // attach an interrupt handler to run when the input is going low
+    detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
     attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensorHandlerActive, FALLING);
 }
 #endif // INTERR_CHG
