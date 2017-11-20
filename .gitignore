@@ -19,3 +19,5 @@ error_log
 *.session
 # Links (FF)
 *.url
+# thumbnail files
+Thumbs.db
