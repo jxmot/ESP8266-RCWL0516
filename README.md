@@ -59,7 +59,7 @@ If polling is desired then uncomment the `#define POLLED` and comment out the `#
 
 ## Polling for State Change
 
-Polling is the simplest approach to reading the sensor. However extra consideration should be taken because the polling becomes part of the main execution loop. And it might impact other tasks occurring within the main execution loop. Here is a simple example - 
+Polling is the simplest approach to reading the sensor. However extra consideration should be taken because the polling becomes part of the main execution loop. And it might impact other tasks occurring within the main execution loop. Here is a simple code example - 
 
 ```C++
 #define SENSOR_PIN D2
@@ -145,7 +145,64 @@ Here's a simple timing diagram -
   <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
 </p>
 
-The *swapping* of the interrupt handlers is done because the ESP8266 does not allow for attaching more than one interrupt to a pin at a time. 
+The *swapping* of the interrupt handlers is done because the ESP8266 does not allow for attaching more than one interrupt to a pin at a time.
+
+Here is a simple code example -
+
+```c++
+#define SENSOR_PIN D2
+
+void setup()
+{
+    // Initialize the IO
+    setUpIO();
+    
+    // attach an interrupt handler to run when the input is going low
+    attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensorHandlerActive, FALLING);
+}
+
+/*
+    Set up the GPIO pins as needed...
+*/
+void setUpIO()
+{
+    // set up the built-in LED for use...
+    pinMode(LED_BUILTIN, OUTPUT);
+    // turn off the on-board LED
+    digitalWrite(LED_BUILTIN, LED_BUILTIN_OFF);
+
+    // set up the pin to read the sensor state
+    // NOTE: An external pull-up resistor was used in
+    // the circuit where this sketch was developed.
+    pinMode(SENSOR_PIN, INPUT);
+}
+
+/*
+    The ESP8266 only allows one handler per pin. That is why each handler
+    attaches the opposite handler before returning.
+*/
+void sensorHandlerActive()
+{
+    // indicate the new sensor state - active
+    setLED(LED_BUILTIN_ON);
+    // attach an interrupt handler to run when the input is going high
+    detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
+    attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensorHandlerIdle, RISING);
+}
+
+void sensorHandlerIdle()
+{
+    // indicate the new sensor state - idle
+    setLED(LED_BUILTIN_OFF);
+    // attach an interrupt handler to run when the input is going low
+    detachInterrupt(digitalPinToInterrupt(SENSOR_PIN));
+    attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensorHandlerActive, FALLING);
+}
+
+void loop()
+{
+}
+```
 
 ### CHANGE
 
