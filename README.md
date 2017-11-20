@@ -72,6 +72,9 @@ void setup()
     // initialize the states...
     state = false;
     lastState = false;
+    
+    // Initialize the IO
+    setUpIO();
 }
 
 void loop()
@@ -93,6 +96,22 @@ void loop()
     yield();
     delay(500);
 }
+
+/*
+    Set up the GPIO pins as needed...
+*/
+void setUpIO()
+{
+    // set up the built-in LED for use...
+    pinMode(LED_BUILTIN, OUTPUT);
+    // turn off the on-board LED
+    digitalWrite(LED_BUILTIN, LED_BUILTIN_OFF);
+
+    // set up the pin to read the sensor state
+    // NOTE: An external pull-up resistor was used in
+    // the circuit where this sketch was developed.
+    pinMode(SENSOR_PIN, INPUT);
+}
 ```
 
 In the example above the sensor input is read (*polled*) every 500ms. When the current state doesn't match the the last transitioned state then the sensor has changed its output.
@@ -104,7 +123,32 @@ Some disadvantages to polling are -
 
 ## Interrupt on State Change
 
-### The Need for Debouncing
+If you're not already familiar with the concept of *interrupts* then check out some [Interrupts](#interrupts) links at the end of this file.
+
+In regards to monitoring the state of a digital input the use of a properly configured interrupt is generally a better choice than polling. But not in all situations. And remember then while in an *interrupt service routine* don't spend a lot of time or CPU cycles in that code.
+
+I tried a couple of interrupt types, `FALLING`/`RISING` and `CHANGE`. And had some interesting results.
+
+### RISING and FALLING
+
+The GPIO input (`D2`) and the interrupts work like this :
+
+First the code, notice how the interrupt handler is swapped when a handler is called - 
+
+<p align="center">
+  <img src="./mdimg/flow-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+</p>
+
+Here's a simple timing diagram - 
+
+<p align="center">
+  <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+</p>
+
+
+### CHANGE
+
+#### The Need for Debouncing
 
 
 
