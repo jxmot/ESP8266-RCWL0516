@@ -1,5 +1,33 @@
 # ESP8266-RCWL0516
 
+* [Overview](#overview)
+* [History](#history)
+* [Running the Application](#running-the-application)
+* [Code Details](#code-details)
+    * [Polling for State Change](#polling-for-state-change)
+    * [Interrupt on State Change](#interrupt-on-state-change)
+        * [RISING and FALLING](#rising-and-falling)
+        * [CHANGE](#change)
+            * [The Need for Debouncing](#the-need-for-debouncing)
+* [Build Details](#build-details)
+    * [The Circuit](#the-circuit)
+        * [Schematic](#schematic)
+    * [Assembling the Parts](#assembling-the-parts)
+        * [RCWL0516 Details](#rcwl0516-details)
+        * [Testing the Circuit](#testing-the-circuit)
+        * [Finished Breadboard](#finished-breadboard)
+    * [Download and Run](#download-and-run)
+* [Component Sources](#component-sources)
+* [Future Modifications](#future-modifications)
+    * [ESP-01S](#esp-01s)
+    * [Isolated Power Supply](#isolated-power-supply)
+* [Links and References](#links-and-references)
+    * [NodeMCU](#nodemcu)
+    * [Interrupts](#interrupts)
+    * [RCWL-0516](#rcwl-0516)
+
+# Overview
+
 This is an ESP8266 project that uses a RCWL-0516 microwave presence sensor. The code is capable of detecting the state of the sensor by utilizing either polling or interrupts. The circuit also utilizes *opto-coupling* to isolate the sensor from the ESP8266.
 
 If you need to know more about the RCWL-0516 before proceeding there are some helpful links at the end of this file.
@@ -391,7 +419,7 @@ So you might be wondering "*why the NTE3042?*". Well I happened to be in a local
 
 I recommend that you use at least 12 to 18 inches of wire to connect the sensor to the bread board. And keep it separated from the NodeMCU. I've read that the radio frequency used by the sensor (*in the gigahertz range*) conflicts with the 2.4Ghz signal used by the WiFi on the NodeMCU board.
 
-## Download & Run
+## Download and Run
 
 Assuming that you've assembled and tested the circuit it's time to try out the code! After the sketch has been compiled and downloaded the on-board LED of the NodeMCU *might* be lit when the program starts. If so just wait about 2 to 3 seconds and it should turn off. When it turns off the sensor has not detected any presence.
 
