@@ -50,11 +50,11 @@ It possible to choose the method for state detection. This is done using `#defin
 
 If polling is desired then uncomment the `#define POLLED` and comment out the `#define INTERR`. For example - 
 
-**`#define POLLED`**
-`//  - OR -`
-**`//#define INTERR`**
-`// this will enable interrupt on change instead of `
-`// interrupt on level (low vs high)`
+**`#define POLLED`**<br>
+`//  - OR -`<br>
+**`//#define INTERR`**<br>
+`// this will enable interrupt on change instead of `<br>
+`// interrupt on level (low vs high)`<br>
 `//#define INTERR_CHG`
 
 ## Polling for State Change
@@ -206,9 +206,80 @@ void loop()
 
 ### CHANGE
 
+The other type of interrupt I tried was `CHANGE`. It's supposed to interrupt when the *input changes*. It can be from HIGH to LOW or LOW to HIGH.
+
+To enable this inerrupt type - 
+
+`//#define POLLED`**<br>
+`//  - OR -`<br>
+**`#define INTERR`**<br>
+`// this will enable interrupt on change instead of `<br>
+`// interrupt on level (low vs high)`<br>
+**`#define INTERR_CHG`**
+
+Here's an example of the code - 
+
+```c++
+#define SENSOR_PIN D2
+
+void setup()
+{
+    // Initialize the IO
+    setUpIO();
+    
+    // attach an interrupt handler to run when the input changes
+    attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), sensorHandler, CHANGE);
+}
+
+/*
+    Set up the GPIO pins as needed...
+*/
+void setUpIO()
+{
+    // set up the built-in LED for use...
+    pinMode(LED_BUILTIN, OUTPUT);
+    // turn off the on-board LED
+    digitalWrite(LED_BUILTIN, LED_BUILTIN_OFF);
+
+    // set up the pin to read the sensor state
+    // NOTE: An external pull-up resistor was used in
+    // the circuit where this sketch was developed.
+    pinMode(SENSOR_PIN, INPUT);
+}
+
+/*
+    A single interrupt handler for "change" on the input pin.
+*/
+void sensorHandler()
+{
+    bool state = digitalRead(SENSOR_PIN);
+    // indicate the new sensor state - active
+    setLED(state);
+}
+```
+
 #### The Need for Debouncing
 
+I had some unexpected results with this interrupt type. It appears that there is some *bouncing* when the sensor becomes active. What's strange about that is that I would expect to see the input bouncing between active and inactive, not multiple `ACTIVE`.
 
+```
+interr - ACTIVE
+interr - ACTIVE
+interr - IDLE
+interr - ACTIVE
+interr - ACTIVE
+interr - IDLE
+interr - ACTIVE
+interr - ACTIVE
+interr - ACTIVE
+interr - IDLE
+interr - ACTIVE
+interr - ACTIVE
+interr - ACTIVE
+interr - IDLE
+```
+
+I'll have to investigate this a bit further. Unfortunately I don't have an oscilloscope to view the input signal.
 
 # Build Details
 
@@ -322,25 +393,32 @@ I recommend that you use at least 12 to 18 inches of wire to connect the sensor 
 
 ## Download & Run
 
-Assuming that you've assembled and tested the circuit it's time to try out the code! After the sketch has been compiled and downloaded the on-board LED of the NodeMCU *might* be lit when the program starts. If so just wait about 5 to 10 seconds and it should turn off. When it turns off the sensor has not detected any presence.
+Assuming that you've assembled and tested the circuit it's time to try out the code! After the sketch has been compiled and downloaded the on-board LED of the NodeMCU *might* be lit when the program starts. If so just wait about 2 to 3 seconds and it should turn off. When it turns off the sensor has not detected any presence.
 
 Please keep in mind that the sensor is quite sensitive. And a minor amount of movement within its range will activate it. 
 
-When the LED is off try waving your hand in front of the sensor (*the side with the components*) and the LED should light up and you should see `interr - ACTIVE` on the IDE console. Wait about 5 to 10 seconds and the LED should turn off and `interr - IDLE` will be seen on the console.
-
-
-
+When the LED is off try waving your hand in front of the sensor (*the side with the components*) and the LED should light up and you should see `interr - ACTIVE` on the IDE console. Wait about 2 to 3 seconds and the LED should turn off and `interr - IDLE` will be seen on the console.
 
 # Component Sources
 
-
-
+Except for the NTE3042 I found all of the parts on-line. They're easy to find and not very expensive. The NTE3042 was bought at a local electronics retailer. However if you can't find one try using a 4N35 opto-coupler.
 
 # Future Modifications
+
+## ESP-01S
+
+The NodeMCU is overkill for this project. But I had some laying around so that why it's used here. I'm planning on giving an ESP-01S a try.
+
+## Isolated Power Supply
+
+I've been investigating the use of an *isolating power supply* with the circuit. Its purpose would be to provide the sensor and the input side of the opto-coupler with an isolated 5 volt supply. And the 5 volt input would also power the NodeMCU/ESP-01S.
+
+Here a couple of links to the isolated power supply I've chosen -
 
 * [DCH010505S Miniature, 1W, 3kVDC Isolated DCDC Converters](http://www.ti.com/product/dch010505s?qgpn=dch010505s)
 * [DCH010505SN7 Texas Instruments Power Supplies - Board Mount DigiKey](https://www.digikey.com/products/en?keywords=DCH010505S)
 
+**NOTE :** The NodeMCU board I'm using (*Amica*) can **only** be powered via the USB connector. The pin marked `Vin`  on the board is only an output (*according to the NodeMCU schematic*). There's a limiting diode in the circuit that blocks an input voltage on the pin from getting to the CP2102 which is responsible for creating the 3.3v needed by the ESP8266.
 
 # Links and References
 
