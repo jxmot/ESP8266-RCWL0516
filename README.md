@@ -145,6 +145,7 @@ Here's a simple timing diagram -
   <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
 </p>
 
+The *swapping* of the interrupt handlers is done because the ESP8266 does not allow for attaching more than one interrupt to a pin at a time. 
 
 ### CHANGE
 
