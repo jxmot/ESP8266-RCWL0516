@@ -21,6 +21,7 @@
 * [Future Modifications](#future-modifications)
     * [ESP-01S](#esp-01s)
     * [Isolated Power Supply](#isolated-power-supply)
+    * [UDP](#udp)
 * [Links and References](#links-and-references)
     * [NodeMCU](#nodemcu)
     * [Interrupts](#interrupts)
@@ -447,6 +448,10 @@ Here a couple of links to the isolated power supply I've chosen -
 * [DCH010505SN7 Texas Instruments Power Supplies - Board Mount DigiKey](https://www.digikey.com/products/en?keywords=DCH010505S)
 
 **NOTE :** The NodeMCU board I'm using (*Amica*) can **only** be powered via the USB connector. The pin marked `Vin`  on the board is only an output (*according to the NodeMCU schematic*). There's a limiting diode in the circuit that blocks an input voltage on the pin from getting to the CP2102 which is responsible for creating the 3.3v needed by the ESP8266.
+
+### UDP
+
+I plan on using UDP and have the sensor interrupts drive a UDP connection and packet transmission to a server. The server is likely to be on the same network and implemented in a *Tessel 2*.
 
 # Links and References
 
