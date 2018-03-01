@@ -79,18 +79,20 @@ It possible to choose the method for state detection. This is done using `#defin
 
 If polling is desired then uncomment the `#define POLLED` and comment out the `#define INTERR`. For example - 
 
-**`#define POLLED`**<br>
-`//  - OR -`<br>
-**`//#define INTERR`**<br>
-`// this will enable interrupt on change instead of `<br>
-`// interrupt on level (low vs high)`<br>
-`//#define INTERR_CHG`
+```
+#define POLLED
+//  - OR -
+//#define INTERR
+// this will enable interrupt on change instead of 
+// interrupt on level (low vs high)
+//#define INTERR_CHG
+```
 
 ## Polling for State Change
 
 Polling is the simplest approach to reading the sensor. However extra consideration should be taken because the polling becomes part of the main execution loop. And it might impact other tasks occurring within the main execution loop. Here is a simple code example - 
 
-```C++
+```c
 #define SENSOR_PIN D2
 
 bool state;
@@ -165,20 +167,22 @@ The GPIO input (`D2`) and the interrupts work like this :
 First the code, notice how the interrupt handler is swapped when a handler is called - 
 
 <p align="center">
-  <img src="./mdimg/flow-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+  <img src="./mdimg/flow-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
 </p>
+<br>
 
 Here's a simple timing diagram - 
 
 <p align="center">
-  <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+  <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
 </p>
+<br>
 
 The *swapping* of the interrupt handlers is done because the ESP8266 does not allow for attaching more than one interrupt to a pin at a time.
 
 Here is a simple code example -
 
-```c++
+```c
 #define SENSOR_PIN D2
 
 void setup()
@@ -248,7 +252,7 @@ To enable this inerrupt type -
 
 Here's an example of the code - 
 
-```c++
+```c
 #define SENSOR_PIN D2
 
 void setup()
@@ -350,7 +354,7 @@ Tools Used :
 Here's a basic schematic of the circuit - 
 
 <p align="center">
-  <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+  <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
 </p>
 
 The output of the opto-coupler is wired as *open collector*, which explains the need for a pull-up resistor to bring the voltage up when the sensor is inactive (*idle*). The use of the inverted logic has an advantage, the input value on `D2` can be used directly to turn the LED on or off. 
