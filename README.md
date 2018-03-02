@@ -79,18 +79,20 @@ It possible to choose the method for state detection. This is done using `#defin
 
 If polling is desired then uncomment the `#define POLLED` and comment out the `#define INTERR`. For example - 
 
-**`#define POLLED`**<br>
-`//  - OR -`<br>
-**`//#define INTERR`**<br>
-`// this will enable interrupt on change instead of `<br>
-`// interrupt on level (low vs high)`<br>
-`//#define INTERR_CHG`
+```
+#define POLLED
+//  - OR -
+//#define INTERR
+// this will enable interrupt on change instead of 
+// interrupt on level (low vs high)
+//#define INTERR_CHG
+```
 
 ## Polling for State Change
 
 Polling is the simplest approach to reading the sensor. However extra consideration should be taken because the polling becomes part of the main execution loop. And it might impact other tasks occurring within the main execution loop. Here is a simple code example - 
 
-```C++
+```c
 #define SENSOR_PIN D2
 
 bool state;
@@ -165,20 +167,22 @@ The GPIO input (`D2`) and the interrupts work like this :
 First the code, notice how the interrupt handler is swapped when a handler is called - 
 
 <p align="center">
-  <img src="./mdimg/flow-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+  <img src="./mdimg/flow-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
 </p>
+<br>
 
 Here's a simple timing diagram - 
 
 <p align="center">
-  <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+  <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
 </p>
+<br>
 
 The *swapping* of the interrupt handlers is done because the ESP8266 does not allow for attaching more than one interrupt to a pin at a time.
 
 Here is a simple code example -
 
-```c++
+```c
 #define SENSOR_PIN D2
 
 void setup()
@@ -248,7 +252,7 @@ To enable this inerrupt type -
 
 Here's an example of the code - 
 
-```c++
+```c
 #define SENSOR_PIN D2
 
 void setup()
@@ -350,7 +354,7 @@ Tools Used :
 Here's a basic schematic of the circuit - 
 
 <p align="center">
-  <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:400px"/>
+  <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
 </p>
 
 The output of the opto-coupler is wired as *open collector*, which explains the need for a pull-up resistor to bring the voltage up when the sensor is inactive (*idle*). The use of the inverted logic has an advantage, the input value on `D2` can be used directly to turn the LED on or off. 
@@ -369,7 +373,7 @@ It's assumed that you (*the reader*) most likely are already familiar with *brea
 The RCWL-0516 sensors are relatively inexpensive. I found them online at 5 for about $10 ($2 each). When they arrived they needed to be "snapped apart". It's typical for smaller electronic boards to be manufactured this way. It makes them easier to assemble. There may also be a small piece to snap off where the connection holes are.
 
 <p align="center">
-  <img src="./mdimg/rcwl0516-1-644x478-caption.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+  <img src="./mdimg/rcwl0516-1-644x478-caption.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
 </p>
 
 So you may have to separate them. It's not difficult but I recommend being careful. It's easiest if you have a sturdy hold on two adjacent boards and then gently bend at the edge where they're attached to each other.
@@ -379,23 +383,23 @@ For my purposes I decided that I wanted a 5 pin *right angle* pin header on the 
 If you are using a *male* header on the sensor it's likely you'll have to cut the length you need from a larger header. Use the small wire cutter and place the cutting edge in the small groove between the pins. Be careful when cutting the header! The smaller piece has a tendency to fly off somewhere!
 
 <p align="center">
-  <img src="./mdimg/rcwl0516-header-cutting.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+  <img src="./mdimg/rcwl0516-header-cutting.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
 </p>
 
 <p align="center">
-  <img src="./mdimg/rcwl0516-2-607x428.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+  <img src="./mdimg/rcwl0516-2-607x428.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
 </p>
 
 My next step was to find a way where I could either mount the board onto something or enclose it in some type of container. So after rummaging through my bits and pieces I found an old CF memory card case. And as it turns out it needed only minor modifications and the board with the connector fit it perfectly.
 
 <p align="center">
-  <img src="./mdimg/cf-case-02-03-04.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+  <img src="./mdimg/cf-case-02-03-04.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
 </p>
 
 Now that I had the sensor in a case I needed a way to stand it up or attach it to something. For attaching it to a window or a door *painter's tape* works very well. For standing it upright on a table I used some plastic mini-clamps that I found a local tool supply store.
 
 <p align="center">
-  <img src="./mdimg/cf-case-05-06.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black"/>
+  <img src="./mdimg/cf-case-05-06.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
 </p>
 
 ### Testing the Circuit
@@ -407,13 +411,13 @@ Testing was simple and only required the use of a voltmeter and a 5 volt DC powe
 ### Finished Breadboard
 
 <p align="center">
-  <img src="./mdimg/bb-01.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black;width:400px"/>
+  <img src="./mdimg/bb-01.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black;width:50%;"/>
 </p>
 
 **NOTES :** The NTE3042 chips I used didn't have the typical pin 1 markings. Most IC's will have a small dimple or a printed dot on the top corner that marks pin 1. However the NTE3042 chips have the left edge (*looking down*) corner removed. And unfortunately the resulting notch is very small and difficult to see without magnification. Here's a diagram that might provide a better description :
 
 <p align="center">
-  <img src="./mdimg/ic-6-pin-all-nte.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black"/>
+  <img src="./mdimg/ic-6-pin-all-nte.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black;width:50%;"/>
 </p>
 
 So you might be wondering "*why the NTE3042?*". Well I happened to be in a local electronics store and it was the *only* opto-coupler they had in stock. And I didn't want to wait for an online order to be delivered, and at about $2 each I figured "why not?". And I was lucky that day, the part worked perfectly for this project.
