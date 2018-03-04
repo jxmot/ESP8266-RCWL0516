@@ -167,14 +167,14 @@ The GPIO input (`D2`) and the interrupts work like this :
 First the code, notice how the interrupt handler is swapped when a handler is called - 
 
 <p align="center">
-  <img src="./mdimg/flow-01.png" alt="Interrupt Excution Flow" txt="Interrupt Excution Flow" style="border: 2px solid black;width:50%"/>
+  <img src="./mdimg/flow-01.png" alt="Interrupt Excution Flow" txt="Interrupt Excution Flow" width="50%"  style="border: 2px solid black;"/>
 </p>
 <br>
 
 Here's a simple timing diagram - 
 
 <p align="center">
-  <img src="./mdimg/timing-01.png" alt="Interrupt Timing" txt="Interrupt Timing" style="border: 2px solid black;width:50%"/>
+  <img src="./mdimg/timing-01.png" alt="Interrupt Timing" txt="Interrupt Timing" width="50%" style="border: 2px solid black;"/>
 </p>
 <br>
 
@@ -354,7 +354,7 @@ Tools Used :
 Here's a basic schematic of the circuit - 
 
 <p align="center">
-  <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
+  <img src="./mdimg/schem-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;"/>
 </p>
 
 The output of the opto-coupler is wired as *open collector*, which explains the need for a pull-up resistor to bring the voltage up when the sensor is inactive (*idle*). The use of the inverted logic has an advantage, the input value on `D2` can be used directly to turn the LED on or off. 
