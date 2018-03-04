@@ -167,14 +167,14 @@ The GPIO input (`D2`) and the interrupts work like this :
 First the code, notice how the interrupt handler is swapped when a handler is called - 
 
 <p align="center">
-  <img src="./mdimg/flow-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
+  <img src="./mdimg/flow-01.png" alt="Interrupt Excution Flow" txt="Interrupt Excution Flow" style="border: 2px solid black;width:50%"/>
 </p>
 <br>
 
 Here's a simple timing diagram - 
 
 <p align="center">
-  <img src="./mdimg/timing-01.png" alt="Circuit Schematic" txt="Circuit Schematic" style="border: 2px solid black;width:50%"/>
+  <img src="./mdimg/timing-01.png" alt="Interrupt Timing" txt="Interrupt Timing" style="border: 2px solid black;width:50%"/>
 </p>
 <br>
 
@@ -383,23 +383,23 @@ For my purposes I decided that I wanted a 5 pin *right angle* pin header on the 
 If you are using a *male* header on the sensor it's likely you'll have to cut the length you need from a larger header. Use the small wire cutter and place the cutting edge in the small groove between the pins. Be careful when cutting the header! The smaller piece has a tendency to fly off somewhere!
 
 <p align="center">
-  <img src="./mdimg/rcwl0516-header-cutting.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
+  <img src="./mdimg/rcwl0516-header-cutting.png" alt="Photo of the rcwl-0516, header assembly" txt="Photo of the rcwl-0516, header assembly" style="border: 2px solid black;width:50%;"/>
 </p>
 
 <p align="center">
-  <img src="./mdimg/rcwl0516-2-607x428.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
+  <img src="./mdimg/rcwl0516-2-607x428.png" alt="Photo of the rcwl-0516, with and without header" txt="Photo of the rcwl-0516, with and without header" style="border: 2px solid black;width:50%;"/>
 </p>
 
 My next step was to find a way where I could either mount the board onto something or enclose it in some type of container. So after rummaging through my bits and pieces I found an old CF memory card case. And as it turns out it needed only minor modifications and the board with the connector fit it perfectly.
 
 <p align="center">
-  <img src="./mdimg/cf-case-02-03-04.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
+  <img src="./mdimg/cf-case-02-03-04.png" alt="Plastic case modification" txt="Plastic case modification6" style="border: 2px solid black;width:50%;"/>
 </p>
 
 Now that I had the sensor in a case I needed a way to stand it up or attach it to something. For attaching it to a window or a door *painter's tape* works very well. For standing it upright on a table I used some plastic mini-clamps that I found a local tool supply store.
 
 <p align="center">
-  <img src="./mdimg/cf-case-05-06.png" alt="Photo of the rcwl-0516" txt="Photo of the rcwl-0516" style="border: 2px solid black;width:50%;"/>
+  <img src="./mdimg/cf-case-05-06.png" alt="Finished plastic case" txt="Finished plastic case" style="border: 2px solid black;width:50%;"/>
 </p>
 
 ### Testing the Circuit
@@ -411,7 +411,7 @@ Testing was simple and only required the use of a voltmeter and a 5 volt DC powe
 ### Finished Breadboard
 
 <p align="center">
-  <img src="./mdimg/bb-01.png" alt="NTE 6 pin IC package" txt="NTE 6 pin IC package" style="border: 2px solid black;width:50%;"/>
+  <img src="./mdimg/bb-01.png" alt="Breadboard Image" txt="Breadboard Image" style="border: 2px solid black;width:50%;"/>
 </p>
 
 **NOTES :** The NTE3042 chips I used didn't have the typical pin 1 markings. Most IC's will have a small dimple or a printed dot on the top corner that marks pin 1. However the NTE3042 chips have the left edge (*looking down*) corner removed. And unfortunately the resulting notch is very small and difficult to see without magnification. Here's a diagram that might provide a better description :
