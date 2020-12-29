@@ -1,0 +1,25 @@
+{
+    "owner"    : "jxmot",
+    "repo"     : "ESP8266-RCWL0516",
+    "branch"   : "master",
+
+    "mdfilerem": true,
+    "mdfile"   : "README.md",
+    "mdpageopt": "./mdpageopt.json",
+
+    "pagetitle": "ESP8266-RCWL0516 - Design Notes",
+
+    "gitdesc"  : true,
+    "metadesc" : "",
+
+    "gittopics": true,
+    "metakeyw" : "",
+
+    "metaauth" : "https://github.com/jxmot",
+
+    "genstatic": false,
+    "statname" : "./rcwl0516.html",
+
+    "oghead": false,
+    "ogjson": ""
+}
